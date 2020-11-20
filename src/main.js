@@ -8,6 +8,7 @@ const getNode = async function (versionRange, opts) {
     versionRange: versionRangeA,
     output,
     arch,
+    platform,
     preferredNodeOpts,
     nodeVersionAliasOpts,
     fetchOpts,
@@ -18,7 +19,7 @@ const getNode = async function (versionRange, opts) {
     preferredNodeOpts,
     nodeVersionAliasOpts,
   })
-  const nodePath = await download({ version, output, arch, fetchOpts })
+  const nodePath = await download({ version, output, arch, platform, fetchOpts })
   return { version, path: nodePath }
 }
 

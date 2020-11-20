@@ -1,17 +1,17 @@
 {
-  "name": "get-node",
-  "version": "11.0.1",
+  "name": "@defin/get-node",
+  "version": "1.0.0",
   "main": "build/src/main.js",
   "files": [
     "build/src",
     "!*~"
   ],
   "scripts": {
+    "build": "gulp build",
     "test": "gulp test"
   },
   "husky": {
     "hooks": {
-      "pre-push": "gulp -LL check --full"
     }
   },
   "description": "Download a specific version of Node.js",

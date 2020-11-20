@@ -1,5 +1,5 @@
 import { dirname, resolve, normalize } from 'path'
-import { arch } from 'process'
+import { arch, platform } from 'process'
 
 import test from 'ava'
 import del from 'del'
@@ -12,7 +12,7 @@ import { TEST_VERSION } from './helpers/versions.js'
 
 test.serial('Defaults output to cache directory', async (t) => {
   const cacheDir = await globalCacheDir('nve')
-  const nodeDir = resolve(cacheDir, TEST_VERSION, arch)
+  const nodeDir = resolve(cacheDir, TEST_VERSION, platform, arch)
   await del(nodeDir, { force: true })
 
   const { path } = await getNode(TEST_VERSION)
@@ -24,7 +24,7 @@ test('Can use output option', async (t) => {
   const output = getOutput()
   const { path } = await getNode(TEST_VERSION, { output })
 
-  t.is(dirname(dirname(getNodeDir(path))), normalize(output))
+  t.is(dirname(dirname(dirname(getNodeDir(path)))), normalize(output))
 
   await removeOutput(path)
 })

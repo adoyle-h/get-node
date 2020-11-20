@@ -43,3 +43,28 @@ each(
     })
   },
 )
+
+each(
+  [
+    OLDEST_VERSION,
+    NO_XZ_VERSION,
+    OLD_WIN_VERSION,
+    NO_ZIP_VERSION,
+    TEST_VERSION,
+    TEST_VERSION_RANGE,
+    LATEST_VERSION,
+    LOCAL_VERSION,
+    ALIAS_VERSION,
+  ],
+  ({ title }, versionInput) => {
+    test(`Downloads node for win32 | ${title}`, async (t) => {
+      const output = getOutput()
+      const platform = 'win32'
+      const { path } = await getNode(versionInput, { output, platform })
+
+      t.true(await pathExists(path))
+
+      await removeOutput(path)
+    })
+  },
+)

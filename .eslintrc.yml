@@ -1,1 +1,4 @@
-extends: '@ehmicky/eslint-config/.eslintrc.yml'
+# extends: '@ehmicky/eslint-config/.eslintrc.yml'
+rules:
+  max-lines: off
+  max-len: off

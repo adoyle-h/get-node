@@ -8,19 +8,15 @@ const pRimraf = promisify(rimraf)
 
 // Extract .tar.gz and .tar.xz archive
 export const untar = function (tmpFile) {
-  return tarExtract(tmpFile, { ignore: shouldExclude, strip: 2 })
-}
-
-// As a performance optimization, we only unpack the node binary, not the other
-// files.
-const shouldExclude = function (path) {
-  return !path.endsWith('/node')
+  return tarExtract(tmpFile)
 }
 
 // The archive is extracted to a temporary directory with a single file in it.
 // That directory should be cleaned up after moving the single file, so we
 // remove it right away.
 export const moveTar = async function (tmpFile) {
+  return undefined
+
   const intermediateFile = `${tmpFile}-${Math.random()}`
   await fs.rename(`${tmpFile}/node`, intermediateFile)
 

@@ -1,4 +1,4 @@
-import { cwd as getCwd, arch } from 'process'
+import { cwd as getCwd, arch, platform } from 'process'
 
 import filterObj from 'filter-obj'
 import { validate } from 'jest-validate'
@@ -33,6 +33,7 @@ const DEFAULT_OPTS = {
   versionRange: 'latest',
   progress: false,
   arch,
+  platform,
 }
 
 const EXAMPLE_OPTS = {

@@ -10,7 +10,13 @@ import { downloadRuntime } from './archive/main.js'
 
 // Download the Node.js binary for a specific `version`.
 // If the file already exists, do nothing. This allows caching.
-export const download = async function ({ version, output, arch, platform, fetchOpts }) {
+export const download = async function ({
+  version,
+  output,
+  arch,
+  platform,
+  fetchOpts,
+}) {
   const archA = getArch(arch)
 
   // On Unix, `node` binaries are usually installed inside a `bin` directory.
@@ -42,7 +48,13 @@ export const download = async function ({ version, output, arch, platform, fetch
 //  - this means the file might be on a different partition
 //    (https://github.com/ehmicky/get-node/issues/1), requiring copying it
 //    instead of renaming it. This is done by the `move-file` library.
-const downloadFile = async function ({ version, nodePath, arch, platform, fetchOpts }) {
+const downloadFile = async function ({
+  version,
+  nodePath,
+  arch,
+  platform,
+  fetchOpts,
+}) {
   const tmpFile = await tmpName({ prefix: `get-node-${version}-${arch}` })
 
   try {
@@ -53,7 +65,13 @@ const downloadFile = async function ({ version, nodePath, arch, platform, fetchO
   }
 }
 
-const tmpDownload = async function ({ version, tmpFile, arch, platform, fetchOpts }) {
+const tmpDownload = async function ({
+  version,
+  tmpFile,
+  arch,
+  platform,
+  fetchOpts,
+}) {
   const checksumError = await safeDownload({
     version,
     tmpFile,
@@ -70,12 +88,30 @@ const tmpDownload = async function ({ version, tmpFile, arch, platform, fetchOpt
   }
 }
 
-const safeDownload = async function ({ version, tmpFile, arch, platform, fetchOpts }) {
+const safeDownload = async function ({
+  version,
+  tmpFile,
+  arch,
+  platform,
+  fetchOpts,
+}) {
   try {
-    return await downloadRuntime({ version, tmpFile, arch, platform, fetchOpts })
+    return await downloadRuntime({
+      version,
+      tmpFile,
+      arch,
+      platform,
+      fetchOpts,
+    })
   } catch (error) {
     throw new Error(
-      getDownloadError({ message: error.message, version, arch, platform, fetchOpts }),
+      getDownloadError({
+        message: error.message,
+        version,
+        arch,
+        platform,
+        fetchOpts,
+      }),
     )
   }
 }

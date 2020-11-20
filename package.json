@@ -1,5 +1,5 @@
 {
-  "name": "get-node",
+  "name": "@adoyle.me/get-node",
   "version": "11.0.1",
   "main": "build/src/main.js",
   "files": [
